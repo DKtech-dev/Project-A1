@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import { UserModel } from '../models/user.model';
 
 dotenv.config();
 
@@ -19,6 +20,9 @@ export const connectDB = async (): Promise<void> => {
     const client = await pool.connect();
     console.log('Connected to PostgreSQL database');
     client.release();
+    
+    await UserModel.createUsersTable();
+    console.log('Database tables initialized');
   } catch (error) {
     console.error('Database connection error:', error);
     process.exit(1);
