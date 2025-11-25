@@ -8,7 +8,11 @@
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts",
     "dev:watch": "nodemon --exec ts-node src/server.ts",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "migrate": "ts-node -e \"import('./dist/config/migrations').then(m => m.MigrationRunner.runMigrations())\"",
+    "migrate:dev": "ts-node -e \"import('./src/config/migrations').then(m => m.MigrationRunner.runMigrations())\"",
+    "reset-db": "ts-node -e \"import('./dist/config/migrations').then(m => m.MigrationRunner.resetDatabase())\"",
+    "reset-db:dev": "ts-node -e \"import('./src/config/migrations').then(m => m.MigrationRunner.resetDatabase())\""
   },
   "keywords": ["node", "express", "typescript", "api", "moment-stack"],
   "author": "",
