@@ -64,4 +64,13 @@ See `.env.example` for available configuration options.
 
 ## Database
 
-Uses PostgreSQL. Make sure PostgreSQL is running and configured in your environment variables.
+Uses PostgreSQL with the PostGIS extension for geospatial queries. Make sure PostgreSQL is running, PostGIS is installed, and your environment variables are configured.
+
+### Running database migrations
+
+1. Ensure your `.env` file has the correct database credentials.
+2. Execute migrations (the first migration enables the PostGIS extension automatically):
+   ```bash
+   npm run migrate
+   ```
+   This command runs every SQL file in the `migrations/` directory in order and records which migrations have been executed.
